@@ -99,31 +99,66 @@ export default function PostPage({
 }
 
 export const getStaticProps = async ({ params }) => {
-  const globalData = getGlobalData();
-  const { mdxSource, data } = await getPostBySlug(params.slug);
-  const prevPost = getPreviousPostBySlug(params.slug);
-  const nextPost = getNextPostBySlug(params.slug);
 
-  return {
-    props: {
-      globalData,
-      source: mdxSource,
-      frontMatter: data,
-      prevPost,
-      nextPost,
-    },
-  };
+const apiURL = 'https://contentful-bl-wdhw20-prod.valhalla-api.io/';
+
+const response = await fetch(apiURL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    query: `
+    query Contentful {
+      allContentfulEntry {
+        edges {
+          node {
+            ... on ContentfulPageBlogPost {
+              id
+              slug
+              title
+            }
+          }
+        }
+      }
+    }
+    `
+  })
+})
+
+const { data } = await response.json();
+console.log("API", data)
+
+return {
+  props: {
+    posts: data.allContentfulEntry.edges
+  }
+}
+  // const globalData = getGlobalData();
+  // const { mdxSource, data } = await getPostBySlug(params.slug);
+  // const prevPost = getPreviousPostBySlug(params.slug);
+  // const nextPost = getNextPostBySlug(params.slug);
+
+  // return {
+  //   props: {
+  //     globalData,
+  //     source: mdxSource,
+  //     frontMatter: data,
+  //     prevPost,
+  //     nextPost,
+  //   },
+  // };
 };
 
-export const getStaticPaths = async () => {
-  const paths = postFilePaths
-    // Remove file extensions for page paths
-    .map((path) => path.replace(/\.mdx?$/, ''))
-    // Map the path into the static paths object required by Next.js
-    .map((slug) => ({ params: { slug } }));
+// export const getStaticPaths = async () => {
+//   const paths = postFilePaths
+//     // Remove file extensions for page paths
+//     .map((path) => path.replace(/\.mdx?$/, ''))
+//     // Map the path into the static paths object required by Next.js
+//     .map((slug) => ({ params: { slug } }));
 
-  return {
-    paths,
-    fallback: false,
-  };
-};
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
