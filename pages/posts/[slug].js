@@ -1,10 +1,5 @@
 import { getGlobalData } from '../../utils/global-data';
-import {
-  getNextPostBySlug,
-  getPostBySlug,
-  getPreviousPostBySlug,
-  postFilePaths,
-} from '../../utils/mdx-utils';
+
 
 import { MDXRemote } from 'next-mdx-remote';
 import Head from 'next/head';
