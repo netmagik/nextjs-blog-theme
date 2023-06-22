@@ -101,8 +101,7 @@ console.log("Products", products)
                       </p>
                     )}
                     <h3 className="text-xl md:text-2xl">{product?.node.title}</h3>
-                  
-                    <ArrowIcon className="mt-4" />
+                      <img src={product?.node.featuredImage.src} height="100" width="100" alt={product?.node.featuredImage.altText} />
                   </a>
                 </Link>
               </li>
@@ -166,6 +165,10 @@ export const getStaticProps = async () => {
               currencyCode
             }
           }
+          featuredImage {
+            src
+            altText
+          }
         }
       }
     }
@@ -209,8 +212,6 @@ export const getStaticProps = async () => {
   })
 
   const shopifyData = await response3.json();
-
-  console.log("Shopify", shopifyData.data)
 
   return {
     props: {
