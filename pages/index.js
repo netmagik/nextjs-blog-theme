@@ -7,6 +7,7 @@ import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 
+
 export default function Index({ posts, wpPosts, products }) {
 
   const globalData = getGlobalData();
@@ -20,7 +21,11 @@ export default function Index({ posts, wpPosts, products }) {
         <h1 className="text-3xl lg:text-5xl text-center mb-12 mt-12">
           {globalData.blogTitle}
         </h1>
-
+ {/* Link to the story page */}
+ <Link href={{ pathname: '/story', query: {products} }}>
+        <a>Go to Story Page</a>
+      </Link>
+  
         <ul className="w-full flex">
 
           {/* Display WordPress Posts */}
@@ -122,7 +127,7 @@ export default function Index({ posts, wpPosts, products }) {
   );
 }
 
-export const getStaticProps = async () => {
+export async function getStaticProps() {
   const apiURL = process.env.apiURL;
 
   const ContentfulQuery = `
@@ -136,6 +141,9 @@ export const getStaticProps = async () => {
           featuredImage {
             url
             title
+          }
+          content {
+            raw
           }
         }
       }
