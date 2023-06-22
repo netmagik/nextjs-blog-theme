@@ -39,13 +39,13 @@ console.log("Products", products)
                 <Link href='#'>
                   <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
                     {wpPost.node.date && (
-                      <p className="uppercase mb-3 font-bold opacity-60">
+                      <p className="uppercase mb-3 text-center font-bold opacity-60">
                         {wpPost.node.date}
                       </p>
                     )}
-                    <h3 className="text-xl md:text-2xl">{wpPost.node.title}</h3>
+                    <h3 className="text-xl text-center md:text-2xl">{wpPost.node.title}</h3>
                    
-                    <ArrowIcon className="mt-4" />
+                    <ArrowIcon className="m-auto" />
                   </a>
                 </Link>
               </li>
@@ -68,13 +68,12 @@ console.log("Products", products)
                 <Link href='#'>
                   <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
                     {post?.node.publishedDate && (
-                      <p className="uppercase mb-3 font-bold opacity-60">
+                      <p className="uppercase mb-3 font-bold opacity-60 text-center">
                         {post?.node.publishedDate}
                       </p>
                     )}
-                    <h3 className="text-xl md:text-2xl">{post?.node.title}</h3>
-                  
-                    <ArrowIcon className="mt-4" />
+                    <h3 className="text-xl md:text-2xl text-center">{post?.node.title}</h3>
+                  <img className="m-auto pt-5" src={post?.node.featuredImage.url} height="150" width="150" alt={post.node.featuredImage.title} />
                   </a>
                 </Link>
               </li>
@@ -96,12 +95,12 @@ console.log("Products", products)
                 <Link href='#'>
                   <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
                     {product?.node.priceRangeV2.maxVariantPrice.amount && (
-                      <p className="uppercase mb-3 font-bold opacity-60">
+                      <p className="text-center text-xl md:text-2xl uppercase mb-3 font-bold">
                         ${product?.node.priceRangeV2.maxVariantPrice.amount}
                       </p>
                     )}
-                    <h3 className="text-xl md:text-2xl">{product?.node.title}</h3>
-                      <img src={product?.node.featuredImage.src} height="100" width="100" alt={product?.node.featuredImage.altText} />
+                    <h3 className="text-xl text-center md:text-2xl">{product?.node.title}</h3>
+                      <img className="m-auto pt-5" src={product?.node.featuredImage.src} height="100" width="100" alt={product?.node.featuredImage.altText} />
                   </a>
                 </Link>
               </li>
@@ -134,6 +133,10 @@ export const getStaticProps = async () => {
           id
           title
           publishedDate
+          featuredImage {
+            url
+            title
+          }
         }
       }
     }
