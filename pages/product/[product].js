@@ -192,7 +192,7 @@ export async function getStaticProps({ params }) {
 
   const products = data?.allContentfulPageBlogPost.edges;
 
-  let product = products.find((p) => {
+  let product = products?.find((p) => {
     return p.node.title === params.product;
   });
 
@@ -211,7 +211,7 @@ export async function getStaticProps({ params }) {
 
   let productData = shopifyData?.data.allShopifyProduct.edges;
 
-  let imgNode = productData.find((p) => {
+  let imgNode = productData?.find((p) => {
     let title = p.node.title;
     const regex = new RegExp(`\\b${title}\\b`, 'g');
     if (params.product.toString().match(regex)) {
@@ -219,7 +219,7 @@ export async function getStaticProps({ params }) {
     } else return null;
   });
 
-  let imgSrc = imgNode.node.featuredImage.src;
+  let imgSrc = imgNode?.node.featuredImage.src || null;
 
   return {
     props: {
@@ -267,11 +267,13 @@ export async function getStaticPaths() {
   const { data } = await response1.json();
 
   let products = data?.allContentfulPageBlogPost.edges;
-  let routes = products.map((p) => {
+
+  let routes = products?.map((p) => {
     const params = `/product/${p.node.title}`;
 
-    return params;
+    return params || '';
   });
+  console.log(routes)
 
   return { paths: routes, fallback: false };
 }
