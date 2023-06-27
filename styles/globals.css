@@ -12,6 +12,6 @@ h6 {
   font-family: var(--font-primary);
 }
 
-body {
+body, p {
   font-family: var(--font-secondary);
 }
