@@ -16,15 +16,16 @@ export default function Index({ posts, wpPosts, products }) {
     <Layout>
       <SEO title={globalData.name} description={globalData.blogTitle} />
       <Header name={globalData.name} />
+      <nav className="flex gap-4 justify-center text-2xl font-bold p-5">
+        <Link href="/">Home</Link>
+        <Link href="/products">Products</Link>
+        <Link href="/blog">Blog</Link>
+      </nav>
       <ThemeSwitcher />
       <main className="w-full">
         <h1 className="text-3xl lg:text-5xl text-center mb-12 mt-12">
           {globalData.blogTitle}
         </h1>
- {/* Link to the story page */}
- <Link href={{ pathname: '/story', query: {products} }}>
-        <a>Go to Story Page</a>
-      </Link>
   
         <ul className="w-full flex">
 
@@ -78,7 +79,7 @@ export default function Index({ posts, wpPosts, products }) {
                       </p>
                     )}
                     <h3 className="text-xl md:text-2xl text-center">{post?.node.title}</h3>
-                  <img className="m-auto pt-5" src={post?.node.featuredImage.url} height="150" width="150" alt={post.node.featuredImage.title} />
+                  {/* <img className="m-auto pt-5" src={post?.node.featuredImage.url} height="150" width="150" alt={post.node.featuredImage.title} /> */}
                   </a>
                 </Link>
               </li>
@@ -128,6 +129,7 @@ export default function Index({ posts, wpPosts, products }) {
 }
 
 export async function getStaticProps() {
+  
   const apiURL = process.env.apiURL;
 
   const ContentfulQuery = `
