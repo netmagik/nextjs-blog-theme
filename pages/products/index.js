@@ -5,6 +5,7 @@ import Layout, { GradientBackground } from '../../components/Layout';
 import { getGlobalData } from '../../utils/global-data';
 import SEO from '../../components/SEO';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
+import Nav from '../../components/Nav';
 
 export default function Products({ products }) {
   const globalData = getGlobalData();
@@ -13,11 +14,7 @@ export default function Products({ products }) {
     <Layout>
       <SEO title={globalData.name} description={globalData.blogTitle} />
       <Header name={globalData.name} />
-      <nav className="flex gap-4 justify-center text-2xl font-bold p-5">
-        <Link href="/">Home</Link>
-        <Link href="/products">Products</Link>
-        <Link href="/blog">Blog</Link>
-      </nav>
+      <Nav />
       <ThemeSwitcher />
       <main className="w-full">
         <div className="flex gap-4 justify-center align-middle mt-12">
