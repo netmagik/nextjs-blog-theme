@@ -5,7 +5,7 @@ export default function Header({ name }) {
     <header className="pt-20 pb-12">
       {/* <div className="w-12 h-12 rounded-full block mx-auto mb-4 bg-gradient-conic from-gradient-3 to-gradient-4" /> */}
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 209" fill="none" aria-hidden="true">
-    <g clip-path="url(#clip0_235_8)">
+    <g clipPath="url(#clip0_235_8)">
       <path d="M117.436 207.036V154.604L118.529 153.51H129.452L130.545 154.604V207.036L129.452 208.13H118.529L117.436 207.036Z" className="spark"></path>
       <path d="M117.436 53.5225V1.09339L118.529 0H129.452L130.545 1.09339V53.5225L129.452 54.6159H118.529L117.436 53.5225Z" className="spark"></path>
       <path d="M69.9539 169.238H68.4094L60.6869 161.512V159.967L78.7201 141.938L86.8976 141.942L87.9948 143.031V151.209L69.9539 169.238Z" className="spark"></path>
